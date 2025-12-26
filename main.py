@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 import datetime
 from datetime import datetime
 
@@ -34,3 +35,17 @@ def show_news_item(id):
                            title=news_item['title'],
                            body=news_item['body'])
 
+def new_news_item(title, body):
+    new_id = max(news_items.keys()) + 1
+    return {
+        'id': new_id,
+        'title': title,
+        'body': body
+    }
+
+@app.route('/news/create/', methods=['POST'])
+def create_news_item():
+    item = new_news_item(request.form['title'],
+                         request.form['body'])
+    news_items[item['id']] = item
+    return ''

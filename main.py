@@ -26,4 +26,11 @@ def index():
                            time=time,
                            news_items=news_items.values())
     
+@app.route('/news/<id>/')
+def show_news_item(id):
+    news_item = news_items[int(id)]
+    return render_template('news_item.html',
+                           id=news_item['id'],
+                           title=news_item['title'],
+                           body=news_item['body'])
 

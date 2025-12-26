@@ -4,7 +4,7 @@
     Hi.This is {{time}}. This is recent news.
     <ul>
       {% for item in news_items %}
-        <li><a href="/news/{{ item.id }}">{{ item.title }}</a></li>
+        <li><a href="{{ url_for('show_news_item', id=item.id) }}">{{ item.title }}</a></li>
       {% endfor %}
     </ul>
   </body>
